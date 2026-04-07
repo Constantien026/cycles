@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=1200">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Water Cycle Infographic</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -26,12 +26,14 @@
   }
 
   body {
-    width: 1200px;
+    width: 100%;
+    max-width: 1200px;
     min-height: 1700px;
     background: linear-gradient(180deg, var(--sky1) 0%, var(--sky2) 30%, var(--sky3) 55%, var(--ocean1) 75%, var(--ocean2) 100%);
     font-family: 'DM Sans', sans-serif;
     position: relative;
-    overflow: hidden;
+    overflow-x: auto;
+    margin: 0 auto;
   }
 
   /* Stars */
