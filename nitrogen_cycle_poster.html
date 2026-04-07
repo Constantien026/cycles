@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1200">
+<title>Nitrogen Cycle Infographic</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg1: #0c0818;
+    --bg2: #130e24;
+    --bg3: #1a1230;
+    --purple-dark: #2d1a5c;
+    --purple-mid: #5a3a9a;
+    --purple-light: #8a60d0;
+    --purple-pale: #c4a8f0;
+    --orange-dark: #6b2a00;
+    --orange-mid: #cc5500;
+    --orange-light: #ff8c30;
+    --orange-pale: #ffd4a0;
+    --white: #ffffff;
+    --accent-purple: #a070e8;
+    --accent-orange: #ff9040;
+    --sky-night: #0c0820;
+    --ground-top: #1e1428;
+    --ground-deep: #0e0c1c;
+    --soil-mid: #2a1840;
+  }
+
+  body {
+    width: 1200px;
+    min-height: 1760px;
+    background: linear-gradient(180deg, #0c0818 0%, #130e24 18%, #1a1230 40%, #1e1428 60%, #160f22 80%, #0e0a18 100%);
+    font-family: 'DM Sans', sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Particle dots effect */
+  .particles { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+
+  /* Header */
+  .header {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 48px 60px 20px;
+  }
+  .header-badge {
+    display: inline-block;
+    background: rgba(160,112,232,0.12);
+    border: 1px solid rgba(160,112,232,0.4);
+    color: var(--accent-purple);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    padding: 6px 20px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 86px;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: -2px;
+    text-shadow: 0 0 60px rgba(160,112,232,0.4), 0 4px 30px rgba(0,0,0,0.6);
+  }
+  .header h1 .purple { color: var(--accent-purple); }
+  .header h1 .orange { color: var(--accent-orange); }
+  .header-sub {
+    color: var(--purple-pale);
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    opacity: 0.8;
+  }
+  .header-line {
+    width: 180px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-purple), var(--accent-orange), transparent);
+    margin: 20px auto 0;
+  }
+
+  /* Scene */
+  .scene {
+    position: relative;
+    width: 100%;
+    height: 700px;
+    margin-top: 10px;
+  }
+
+  /* Process grid */
+  .process-grid {
+    position: relative;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 30px 50px 50px;
+  }
+  .process-card {
+    background: rgba(255,255,255,0.035);
+    border: 1px solid rgba(160,112,232,0.18);
+    border-radius: 16px;
+    padding: 22px 20px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(4px);
+  }
+  .process-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 16px 16px 0 0;
+  }
+  .card-p1::before { background: linear-gradient(90deg, #5a3a9a, #a070e8); }
+  .card-p2::before { background: linear-gradient(90deg, #7a50b8, #c090f8); }
+  .card-p3::before { background: linear-gradient(90deg, #8a60c8, #b080e0); }
+  .card-o1::before { background: linear-gradient(90deg, #cc5500, #ff9040); }
+  .card-o2::before { background: linear-gradient(90deg, #aa4400, #ee7020); }
+
+  .card-icon { font-size: 32px; margin-bottom: 10px; display: block; }
+  .card-num {
+    position: absolute; top: 18px; right: 18px;
+    font-family: 'Playfair Display', serif;
+    font-size: 42px; font-weight: 900;
+    color: rgba(255,255,255,0.05); line-height: 1;
+  }
+  .card-title {
+    font-size: 15px; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--accent-purple); margin-bottom: 8px;
+  }
+  .card-title.orange { color: var(--accent-orange); }
+  .card-body {
+    font-size: 13.5px; line-height: 1.65;
+    color: rgba(255,255,255,0.75); font-weight: 300;
+  }
+
+  .footer {
+    position: relative; z-index: 10;
+    text-align: center; padding: 0 60px 40px;
+    color: rgba(255,255,255,0.25);
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  }
+  .footer-line {
+    width: 100%; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(160,112,232,0.3), rgba(255,144,64,0.3), transparent);
+    margin-bottom: 18px;
+  }
+</style>
+</head>
+<body>
+
+<div class="particles" id="particles"></div>
+
+<!-- ============ HEADER ============ -->
+<div class="header">
+  <div class="header-badge">Biogeochemical Cycles · Poster 3 of 3</div>
+  <h1>The <span class="purple">Nitro</span><span class="orange">gen</span> Cycle</h1>
+  <p class="header-sub">How Nitrogen Moves Through Air, Soil, Plants, Animals & Bacteria</p>
+  <div class="header-line"></div>
+</div>
+
+<!-- ============ SCENE SVG ============ -->
+<div class="scene">
+<svg width="1200" height="700" style="position:absolute;top:0;left:0;" viewBox="0 0 1200 700">
+  <defs>
+    <linearGradient id="skyN" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0c0820"/>
+      <stop offset="100%" stop-color="#1a1230"/>
+    </linearGradient>
+    <linearGradient id="groundN" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e1428"/>
+      <stop offset="50%" stop-color="#160f20"/>
+      <stop offset="100%" stop-color="#0e0c18"/>
+    </linearGradient>
+    <linearGradient id="soilN" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2a1840"/>
+      <stop offset="100%" stop-color="#180e2c"/>
+    </linearGradient>
+    <linearGradient id="deepsoilN" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a1030"/>
+      <stop offset="100%" stop-color="#0c0820"/>
+    </linearGradient>
+    <linearGradient id="atmosphereN" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="rgba(100,60,200,0)"/>
+      <stop offset="100%" stop-color="rgba(100,60,200,0.1)"/>
+    </linearGradient>
+    <!-- Arrow markers -->
+    <marker id="arrowP" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#a070e8"/>
+    </marker>
+    <marker id="arrowPL" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#c090f8"/>
+    </marker>
+    <marker id="arrowOr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#ff9040"/>
+    </marker>
+    <marker id="arrowOrL" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#ffb070"/>
+    </marker>
+    <filter id="glowP">
+      <feGaussianBlur stdDeviation="3.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowO">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background sky -->
+  <rect width="1200" height="700" fill="url(#skyN)"/>
+
+  <!-- Atmosphere band (top 140px) -->
+  <rect x="0" y="0" width="1200" height="148" fill="url(#atmosphereN)"/>
+  <rect x="0" y="0" width="1200" height="2" fill="rgba(130,80,220,0.35)"/>
+  <rect x="0" y="147" width="1200" height="1.5" fill="rgba(130,80,220,0.15)"/>
+
+  <!-- N2 atmosphere particles -->
+  <text x="40" y="48" fill="rgba(160,112,232,0.6)" font-size="16" font-family="DM Sans" font-weight="700">N₂</text>
+  <text x="150" y="32" fill="rgba(160,112,232,0.5)" font-size="13" font-family="DM Sans" font-weight="700">N₂</text>
+  <text x="290" y="52" fill="rgba(160,112,232,0.55)" font-size="15" font-family="DM Sans" font-weight="700">N₂</text>
+  <text x="420" y="36" fill="rgba(160,112,232,0.45)" font-size="12" font-family="DM Sans" font-weight="700">N₂</text>
+  <text x="560" y="55" fill="rgba(160,112,232,0.6)" font-size="16" font-family="DM Sans" font-weight="700">N₂</text>
+  <text x="700" y="34" fill="rgba(160,112,232,0.5)" font-size="13" font-family="DM Sans" font-weight="700">N₂</text>
+  <text x="840" y="52" fill="rgba(160,112,232,0.55)" font-size="15" font-family="DM Sans" font-weight="700">N₂</text>
+  <text x="970" y="38" fill="rgba(160,112,232,0.45)" font-size="12" font-family="DM Sans" font-weight="700">N₂</text>
+  <text x="1080" y="56" fill="rgba(160,112,232,0.6)" font-size="14" font-family="DM Sans" font-weight="700">N₂</text>
+  <text x="100" y="100" fill="rgba(160,112,232,0.3)" font-size="10" font-family="DM Sans">N₂</text>
+  <text x="480" y="95" fill="rgba(160,112,232,0.3)" font-size="10" font-family="DM Sans">N₂</text>
+  <text x="780" y="105" fill="rgba(160,112,232,0.3)" font-size="10" font-family="DM Sans">N₂</text>
+  <!-- Atmosphere label -->
+  <rect x="10" y="8" width="215" height="28" rx="6" fill="rgba(20,10,40,0.75)" stroke="rgba(160,112,232,0.35)" stroke-width="1"/>
+  <text x="22" y="26" fill="rgba(160,112,232,0.85)" font-size="10" font-family="DM Sans" font-weight="700" letter-spacing="1.5">ATMOSPHERE (78% N₂)</text>
+
+  <!-- === ABOVE-GROUND ZONE === -->
+  <!-- Ground surface (wavy) -->
+  <path d="M0,410 Q200,395 400,408 Q600,422 800,410 Q1000,398 1200,412 L1200,700 L0,700 Z" fill="url(#groundN)"/>
+  <path d="M0,410 Q200,395 400,408 Q600,422 800,410 Q1000,398 1200,412" fill="none" stroke="rgba(100,70,160,0.4)" stroke-width="2"/>
+
+  <!-- Soil zone label -->
+  <rect x="10" y="418" width="80" height="22" rx="4" fill="rgba(20,10,40,0.7)"/>
+  <text x="18" y="432" fill="rgba(120,80,200,0.7)" font-size="9" font-family="DM Sans" letter-spacing="1">SOIL ZONE</text>
+
+  <!-- Underground soil layer -->
+  <path d="M0,540 Q200,528 400,540 Q600,552 800,540 Q1000,528 1200,540 L1200,700 L0,700 Z" fill="url(#soilN)" opacity="0.9"/>
+  <path d="M0,540 Q200,528 400,540 Q600,552 800,540 Q1000,528 1200,540" fill="none" stroke="rgba(80,50,140,0.3)" stroke-width="1.5"/>
+
+  <!-- Deep soil layer -->
+  <rect x="0" y="630" width="1200" height="70" fill="url(#deepsoilN)"/>
+  <!-- Underground label -->
+  <rect x="10" y="548" width="120" height="22" rx="4" fill="rgba(20,10,40,0.7)"/>
+  <text x="18" y="562" fill="rgba(100,60,180,0.7)" font-size="9" font-family="DM Sans" letter-spacing="1">UNDERGROUND</text>
+
+  <!-- ====== TREES / PLANTS ====== -->
+  <!-- Tree 1 -->
+  <rect x="168" y="340" width="14" height="78" fill="#3a1a60" rx="3"/>
+  <polygon points="175,170 235,345 115,345" fill="#3a1a6a"/>
+  <polygon points="175,220 228,345 122,345" fill="#4a2080"/>
+  <polygon points="175,262 222,345 128,345" fill="#5a2898"/>
+  <!-- Root system tree 1 -->
+  <path d="M175,415 Q155,445 140,470 Q130,490 125,510" stroke="rgba(140,80,220,0.5)" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M175,415 Q175,450 175,475 Q175,495 172,515" stroke="rgba(140,80,220,0.5)" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M175,415 Q195,445 210,468 Q222,488 228,510" stroke="rgba(140,80,220,0.5)" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M140,472 Q128,490 120,508" stroke="rgba(140,80,220,0.35)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <path d="M210,470 Q225,490 232,510" stroke="rgba(140,80,220,0.35)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+  <!-- Tree 2 -->
+  <rect x="288" y="352" width="12" height="66" fill="#3a1a60" rx="2"/>
+  <polygon points="294,200 346,356 242,356" fill="#3a1a6a"/>
+  <polygon points="294,248 340,356 248,356" fill="#4a2080"/>
+  <polygon points="294,286 335,356 253,356" fill="#5a2898"/>
+  <!-- Roots tree 2 -->
+  <path d="M294,415 Q276,442 262,465 Q252,483 248,505" stroke="rgba(140,80,220,0.4)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <path d="M294,415 Q294,448 294,472 Q294,492 291,512" stroke="rgba(140,80,220,0.4)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <path d="M294,415 Q312,442 326,465 Q336,483 340,504" stroke="rgba(140,80,220,0.4)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+
+  <!-- ====== BACTERIA NODES ====== -->
+  <!-- Nitrogen-fixing bacteria (soil near roots) -->
+  <!-- Cluster 1 - N-fixation near root tips -->
+  <circle cx="130" cy="520" r="14" fill="rgba(255,140,50,0.2)" stroke="rgba(255,140,50,0.55)" stroke-width="1.5"/>
+  <circle cx="152" cy="532" r="10" fill="rgba(255,140,50,0.18)" stroke="rgba(255,140,50,0.45)" stroke-width="1.5"/>
+  <circle cx="170" cy="520" r="12" fill="rgba(255,140,50,0.22)" stroke="rgba(255,140,50,0.5)" stroke-width="1.5"/>
+  <circle cx="125" cy="535" r="8" fill="rgba(255,140,50,0.15)" stroke="rgba(255,140,50,0.4)" stroke-width="1"/>
+  <text x="138" y="556" fill="rgba(255,140,50,0.75)" font-size="9" font-family="DM Sans" font-style="italic" text-anchor="middle">N-fixing</text>
+
+  <!-- Cluster 2 - Nitrifying bacteria -->
+  <circle cx="420" cy="518" r="12" fill="rgba(160,112,232,0.22)" stroke="rgba(160,112,232,0.55)" stroke-width="1.5"/>
+  <circle cx="440" cy="530" r="9" fill="rgba(160,112,232,0.18)" stroke="rgba(160,112,232,0.45)" stroke-width="1.5"/>
+  <circle cx="456" cy="518" r="11" fill="rgba(160,112,232,0.2)" stroke="rgba(160,112,232,0.5)" stroke-width="1.5"/>
+  <text x="438" y="548" fill="rgba(160,112,232,0.75)" font-size="9" font-family="DM Sans" font-style="italic" text-anchor="middle">nitrifying</text>
+
+  <!-- Cluster 3 - Denitrifying bacteria -->
+  <circle cx="680" cy="555" r="12" fill="rgba(255,144,64,0.2)" stroke="rgba(255,144,64,0.55)" stroke-width="1.5"/>
+  <circle cx="700" cy="567" r="9" fill="rgba(255,144,64,0.17)" stroke="rgba(255,144,64,0.45)" stroke-width="1.5"/>
+  <circle cx="716" cy="554" r="11" fill="rgba(255,144,64,0.2)" stroke="rgba(255,144,64,0.5)" stroke-width="1.5"/>
+  <text x="698" y="585" fill="rgba(255,144,64,0.75)" font-size="9" font-family="DM Sans" font-style="italic" text-anchor="middle">denitrifying</text>
+
+  <!-- Cluster 4 - Ammonifying bacteria -->
+  <circle cx="900" cy="520" r="12" fill="rgba(180,80,220,0.2)" stroke="rgba(180,80,220,0.5)" stroke-width="1.5"/>
+  <circle cx="920" cy="532" r="9" fill="rgba(180,80,220,0.17)" stroke="rgba(180,80,220,0.4)" stroke-width="1.5"/>
+  <circle cx="936" cy="519" r="11" fill="rgba(180,80,220,0.2)" stroke="rgba(180,80,220,0.5)" stroke-width="1.5"/>
+  <text x="918" y="551" fill="rgba(180,80,220,0.75)" font-size="9" font-family="DM Sans" font-style="italic" text-anchor="middle">ammonifying</text>
+
+  <!-- ====== ANIMAL (simple grazing cow silhouette) ====== -->
+  <ellipse cx="570" cy="395" rx="55" ry="26" fill="#3a1a58"/>
+  <ellipse cx="616" cy="385" rx="22" ry="18" fill="#3a1a58"/>
+  <rect x="545" y="410" width="10" height="26" fill="#2e1448" rx="2"/>
+  <rect x="562" y="413" width="10" height="24" fill="#2e1448" rx="2"/>
+  <rect x="580" y="410" width="10" height="26" fill="#2e1448" rx="2"/>
+  <rect x="597" y="412" width="10" height="24" fill="#2e1448" rx="2"/>
+  <ellipse cx="627" cy="382" rx="9" ry="7" fill="#321450"/>
+  <!-- Waste dots (ammonification) -->
+  <circle cx="545" cy="438" r="5" fill="rgba(255,144,64,0.4)" stroke="rgba(255,144,64,0.6)" stroke-width="1"/>
+  <circle cx="534" cy="448" r="4" fill="rgba(255,144,64,0.35)" stroke="rgba(255,144,64,0.5)" stroke-width="1"/>
+
+  <!-- ====== LIGHTNING bolt (abiotic N fixation) ====== -->
+  <polygon points="1080,55 1068,108 1082,108 1066,155 1094,92 1078,92 1094,55" fill="rgba(255,215,0,0.7)" filter="url(#glowP)"/>
+  <!-- Lightning label -->
+  <text x="1105" y="110" fill="rgba(255,215,0,0.6)" font-size="10" font-family="DM Sans" font-weight="600" letter-spacing="1">LIGHTNING</text>
+  <text x="1105" y="123" fill="rgba(255,215,0,0.5)" font-size="9" font-family="DM Sans">abiotic fixation</text>
+
+  <!-- ====== NH₃/NO₃ molecules in soil ====== -->
+  <text x="240" y="490" fill="rgba(255,144,64,0.5)" font-size="12" font-family="DM Sans" font-weight="600">NH₄⁺</text>
+  <text x="380" y="505" fill="rgba(160,112,232,0.5)" font-size="12" font-family="DM Sans" font-weight="600">NO₂⁻</text>
+  <text x="520" y="490" fill="rgba(160,112,232,0.55)" font-size="12" font-family="DM Sans" font-weight="600">NO₃⁻</text>
+  <text x="800" y="495" fill="rgba(200,100,240,0.45)" font-size="11" font-family="DM Sans" font-weight="600">NH₃</text>
+  <text x="840" y="490" fill="rgba(255,144,64,0.4)" font-size="10" font-family="DM Sans" font-weight="600">NH₄⁺</text>
+
+  <!-- ====== PROCESS ARROWS ====== -->
+
+  <!-- 1. N₂ FIXATION: atmosphere N2 → soil (bacteria) - orange arrows going down -->
+  <path d="M150,148 Q148,260 148,370 Q148,410 148,460" fill="none" stroke="#ff9040" stroke-width="2.5" marker-end="url(#arrowOr)" filter="url(#glowO)"/>
+  <!-- Lightning → soil -->
+  <path d="M1075,150 Q900,250 650,400 Q520,460 400,490" fill="none" stroke="rgba(255,215,0,0.45)" stroke-width="1.8" stroke-dasharray="8,6" marker-end="url(#arrowOr)" opacity="0.7"/>
+
+  <!-- 2. NITRIFICATION: NH4 → NO3 in soil (horizontal arrow) -->
+  <path d="M215,480 Q300,470 360,480 Q390,485 410,495" fill="none" stroke="#a070e8" stroke-width="2.5" marker-end="url(#arrowP)"/>
+  <path d="M410,495 Q445,505 510,492" fill="none" stroke="#a070e8" stroke-width="2" marker-end="url(#arrowPL)" opacity="0.7"/>
+
+  <!-- 3. ASSIMILATION: NO3 in soil → plant roots → up to plant -->
+  <path d="M520,492 Q480,480 400,465 Q310,448 260,430 Q220,418 200,400 Q185,388 180,350" fill="none" stroke="#c090f8" stroke-width="2.5" marker-end="url(#arrowPL)" filter="url(#glowP)"/>
+
+  <!-- 4. AMMONIFICATION: dead animal/plant matter → NH3/NH4 in soil -->
+  <path d="M558,436 Q600,470 700,490 Q780,505 880,510" fill="none" stroke="#ff9040" stroke-width="2.5" marker-end="url(#arrowOr)" stroke-dasharray="7,5"/>
+
+  <!-- 5. DENITRIFICATION: soil NO3 → N2 atmosphere (upward arrow) -->
+  <path d="M690,535 Q700,470 720,380 Q740,280 760,148" fill="none" stroke="#ff9040" stroke-width="2.5" marker-end="url(#arrowOr)" filter="url(#glowO)"/>
+
+  <!-- Animal eating plant (assimilation up chain) -->
+  <path d="M310,380 Q380,390 510,393" fill="none" stroke="rgba(160,112,232,0.5)" stroke-width="2" stroke-dasharray="6,5" marker-end="url(#arrowP)" opacity="0.7"/>
+
+  <!-- Respiration from animal to atmosphere (N compounds) -->
+  <path d="M560,370 Q540,280 520,200 Q505,160 490,148" fill="none" stroke="rgba(160,112,232,0.5)" stroke-width="2" stroke-dasharray="6,5" marker-end="url(#arrowP)" opacity="0.6"/>
+
+  <!-- ====== SCENE LABELS ====== -->
+  <!-- N₂ Fixation label -->
+  <rect x="160" y="250" width="195" height="60" rx="8" fill="rgba(20,10,40,0.92)" stroke="rgba(255,144,64,0.4)" stroke-width="1"/>
+  <text x="172" y="272" fill="#ff9040" font-size="10" font-weight="700" font-family="DM Sans" letter-spacing="1.5">N₂ FIXATION</text>
+  <text x="172" y="287" fill="rgba(255,255,255,0.72)" font-size="9.5" font-family="DM Sans">Bacteria convert inert N₂ gas</text>
+  <text x="172" y="300" fill="rgba(255,255,255,0.72)" font-size="9.5" font-family="DM Sans">into usable NH₃ / NH₄⁺</text>
+
+  <!-- Nitrification label -->
+  <rect x="240" y="535" width="195" height="60" rx="8" fill="rgba(20,10,40,0.92)" stroke="rgba(160,112,232,0.4)" stroke-width="1"/>
+  <text x="252" y="557" fill="#a070e8" font-size="10" font-weight="700" font-family="DM Sans" letter-spacing="1.5">NITRIFICATION</text>
+  <text x="252" y="572" fill="rgba(255,255,255,0.72)" font-size="9.5" font-family="DM Sans">Bacteria oxidize NH₄⁺ into</text>
+  <text x="252" y="584" fill="rgba(255,255,255,0.72)" font-size="9.5" font-family="DM Sans">NO₂⁻, then NO₃⁻ for plants</text>
+
+  <!-- Assimilation label -->
+  <rect x="30" y="335" width="185" height="60" rx="8" fill="rgba(20,10,40,0.92)" stroke="rgba(192,144,248,0.4)" stroke-width="1"/>
+  <text x="42" y="357" fill="#c090f8" font-size="10" font-weight="700" font-family="DM Sans" letter-spacing="1.5">ASSIMILATION</text>
+  <text x="42" y="372" fill="rgba(255,255,255,0.72)" font-size="9.5" font-family="DM Sans">Plants absorb NO₃⁻ through</text>
+  <text x="42" y="384" fill="rgba(255,255,255,0.72)" font-size="9.5" font-family="DM Sans">roots to build proteins &amp; DNA</text>
+
+  <!-- Ammonification label -->
+  <rect x="680" y="430" width="195" height="60" rx="8" fill="rgba(20,10,40,0.92)" stroke="rgba(255,144,64,0.4)" stroke-width="1"/>
+  <text x="692" y="452" fill="#ff9040" font-size="10" font-weight="700" font-family="DM Sans" letter-spacing="1.5">AMMONIFICATION</text>
+  <text x="692" y="467" fill="rgba(255,255,255,0.72)" font-size="9.5" font-family="DM Sans">Decomposers break down</text>
+  <text x="692" y="479" fill="rgba(255,255,255,0.72)" font-size="9.5" font-family="DM Sans">dead matter into NH₃</text>
+
+  <!-- Denitrification label -->
+  <rect x="780" y="285" width="195" height="60" rx="8" fill="rgba(20,10,40,0.92)" stroke="rgba(255,144,64,0.45)" stroke-width="1"/>
+  <text x="792" y="307" fill="#ff9040" font-size="10" font-weight="700" font-family="DM Sans" letter-spacing="1.5">DENITRIFICATION</text>
+  <text x="792" y="322" fill="rgba(255,255,255,0.72)" font-size="9.5" font-family="DM Sans">Anaerobic bacteria convert</text>
+  <text x="792" y="334" fill="rgba(255,255,255,0.72)" font-size="9.5" font-family="DM Sans">NO₃⁻ back to N₂ gas</text>
+
+  <!-- Atmosphere N label (center top) -->
+  <rect x="430" y="52" width="290" height="60" rx="10" fill="rgba(20,10,40,0.92)" stroke="rgba(160,112,232,0.45)" stroke-width="1.5"/>
+  <text x="575" y="76" fill="#a070e8" font-size="11" font-weight="700" font-family="DM Sans" letter-spacing="1.5" text-anchor="middle">ATMOSPHERIC N₂</text>
+  <text x="575" y="91" fill="rgba(255,255,255,0.72)" font-size="9.5" font-family="DM Sans" text-anchor="middle">78% of air is nitrogen — but most</text>
+  <text x="575" y="103" fill="rgba(255,255,255,0.72)" font-size="9.5" font-family="DM Sans" text-anchor="middle">organisms cannot use it directly</text>
+
+  <!-- Zone divider labels -->
+  <text x="1130" y="285" fill="rgba(160,112,232,0.35)" font-size="10" font-family="DM Sans" font-weight="600" letter-spacing="2" text-anchor="middle">ABOVE</text>
+  <text x="1130" y="298" fill="rgba(160,112,232,0.35)" font-size="10" font-family="DM Sans" font-weight="600" letter-spacing="2" text-anchor="middle">GROUND</text>
+  <line x1="1140" y1="305" x2="1140" y2="405" stroke="rgba(160,112,232,0.2)" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="1130" y="445" fill="rgba(255,144,64,0.35)" font-size="10" font-family="DM Sans" font-weight="600" letter-spacing="2" text-anchor="middle">BELOW</text>
+  <text x="1130" y="458" fill="rgba(255,144,64,0.35)" font-size="10" font-family="DM Sans" font-weight="600" letter-spacing="2" text-anchor="middle">GROUND</text>
+
+  <!-- Rhizobium node label -->
+  <rect x="50" y="560" width="170" height="40" rx="6" fill="rgba(20,10,40,0.85)" stroke="rgba(255,144,64,0.3)" stroke-width="1"/>
+  <text x="60" y="577" fill="rgba(255,144,64,0.85)" font-size="9.5" font-family="DM Sans" font-weight="600">Rhizobium (legume roots)</text>
+  <text x="60" y="591" fill="rgba(255,255,255,0.5)" font-size="8.5" font-family="DM Sans">key N₂-fixing bacterium</text>
+</svg>
+</div>
+
+<!-- ============ PROCESS CARDS ============ -->
+<div class="process-grid">
+
+  <div class="process-card card-o1">
+    <span class="card-icon">⚡</span>
+    <div class="card-num">01</div>
+    <div class="card-title orange">Nitrogen Fixation</div>
+    <div class="card-body">Nitrogen-fixing bacteria (Rhizobium, Azotobacter) and lightning convert inert atmospheric N₂ into ammonia (NH₃) or ammonium (NH₄⁺) that organisms can use.</div>
+  </div>
+
+  <div class="process-card card-p1">
+    <span class="card-icon">🔄</span>
+    <div class="card-num">02</div>
+    <div class="card-title">Nitrification</div>
+    <div class="card-body">Nitrifying bacteria (Nitrosomonas, Nitrobacter) convert ammonium (NH₄⁺) step-by-step into nitrite (NO₂⁻) and then nitrate (NO₃⁻) that plants can absorb.</div>
+  </div>
+
+  <div class="process-card card-p2">
+    <span class="card-icon">🌱</span>
+    <div class="card-num">03</div>
+    <div class="card-title">Assimilation</div>
+    <div class="card-body">Plants absorb nitrate (NO₃⁻) and ammonium through their roots, incorporating nitrogen into amino acids, proteins, chlorophyll, and nucleic acids (DNA/RNA).</div>
+  </div>
+
+  <div class="process-card card-o2">
+    <span class="card-icon">💀</span>
+    <div class="card-num">04</div>
+    <div class="card-title orange">Ammonification</div>
+    <div class="card-body">Decomposing bacteria and fungi break down nitrogen-containing compounds in dead organisms and animal waste, releasing ammonia (NH₃) back into the soil.</div>
+  </div>
+
+  <div class="process-card card-p3">
+    <span class="card-icon">💨</span>
+    <div class="card-num">05</div>
+    <div class="card-title">Denitrification</div>
+    <div class="card-body">Anaerobic denitrifying bacteria (Pseudomonas) in waterlogged soils convert nitrates (NO₃⁻) back into N₂ or N₂O gas, completing the cycle by returning nitrogen to the atmosphere.</div>
+  </div>
+
+  <div class="process-card card-p1">
+    <span class="card-icon">🦠</span>
+    <div class="card-num">06</div>
+    <div class="card-title">Bacteria — The Key Players</div>
+    <div class="card-body">Unlike the water and carbon cycles, the nitrogen cycle is almost entirely driven by microorganisms. Without these bacteria, nitrogen would remain locked as unusable N₂ in the atmosphere.</div>
+  </div>
+
+</div>
+
+<!-- ============ FOOTER ============ -->
+<div class="footer">
+  <div class="footer-line"></div>
+  Biogeochemical Cycles · The Nitrogen Cycle · Educational Infographic Poster
+</div>
+
+<script>
+  // Floating N2 particles
+  const p = document.getElementById('particles');
+  for (let i = 0; i < 30; i++) {
+    const d = document.createElement('div');
+    d.style.cssText = `position:absolute;width:2px;height:2px;border-radius:50%;background:rgba(160,112,232,${Math.random()*0.3+0.05});top:${Math.random()*50}%;left:${Math.random()*100}%;`;
+    p.appendChild(d);
+  }
+</script>
+</body>
+</html>

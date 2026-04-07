@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1200">
+<title>Water Cycle Infographic</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sky1: #0a1628;
+    --sky2: #0d2a4a;
+    --sky3: #1a4a7a;
+    --ocean1: #062a4a;
+    --ocean2: #0a4a7a;
+    --water: #1e90ff;
+    --water-light: #87ceeb;
+    --water-pale: #b8e4f9;
+    --ice: #e0f4ff;
+    --white: #ffffff;
+    --accent: #00d4ff;
+    --gold: #ffd700;
+    --ground: #2d4a1e;
+    --ground2: #3d6128;
+  }
+
+  body {
+    width: 1200px;
+    min-height: 1700px;
+    background: linear-gradient(180deg, var(--sky1) 0%, var(--sky2) 30%, var(--sky3) 55%, var(--ocean1) 75%, var(--ocean2) 100%);
+    font-family: 'DM Sans', sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Stars */
+  .stars { position: absolute; inset: 0; pointer-events: none; }
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.5;
+  }
+
+  /* === HEADER === */
+  .header {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 48px 60px 20px;
+  }
+  .header-badge {
+    display: inline-block;
+    background: rgba(0,212,255,0.15);
+    border: 1px solid rgba(0,212,255,0.4);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    padding: 6px 20px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 86px;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: -2px;
+    text-shadow: 0 0 60px rgba(0,212,255,0.4), 0 4px 30px rgba(0,0,0,0.5);
+  }
+  .header h1 span { color: var(--accent); }
+  .header-sub {
+    color: var(--water-light);
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    opacity: 0.85;
+  }
+  .header-line {
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    margin: 20px auto 0;
+  }
+
+  /* === SCENE CANVAS === */
+  .scene {
+    position: relative;
+    width: 100%;
+    height: 680px;
+    margin-top: 10px;
+  }
+
+  /* Sun */
+  .sun {
+    position: absolute;
+    top: 30px;
+    right: 120px;
+    width: 110px;
+    height: 110px;
+    background: radial-gradient(circle, #fff7a0 20%, #ffd700 55%, #ff8c00 80%, transparent 100%);
+    border-radius: 50%;
+    filter: drop-shadow(0 0 30px rgba(255,215,0,0.7));
+    z-index: 5;
+  }
+  .sun::after {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,215,0,0.2) 0%, transparent 70%);
+  }
+  /* Sun rays */
+  .sun-rays {
+    position: absolute;
+    top: -8px; left: -8px; right: -8px; bottom: -8px;
+  }
+  .ray {
+    position: absolute;
+    width: 3px;
+    height: 20px;
+    background: rgba(255,220,0,0.7);
+    border-radius: 2px;
+    left: 50%;
+    transform-origin: 50% 65px;
+  }
+
+  /* Clouds */
+  .cloud {
+    position: absolute;
+    z-index: 6;
+  }
+  .cloud-body {
+    position: relative;
+    filter: drop-shadow(0 8px 20px rgba(0,0,0,0.3));
+  }
+  .cloud-puff {
+    position: absolute;
+    background: linear-gradient(180deg, #e8f4fd 0%, #c8e8f8 60%, #a8d8f0 100%);
+    border-radius: 50%;
+  }
+  .cloud-base {
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(180deg, #c8e8f8 0%, #a8d8f0 100%);
+    border-radius: 30px;
+  }
+
+  /* Cloud 1 - main large cloud */
+  .cloud-1 { top: 60px; left: 200px; }
+  .cloud-1 .cloud-base { width: 200px; height: 55px; left: 0; }
+  .cloud-1 .p1 { width: 90px; height: 90px; top: -50px; left: 15px; }
+  .cloud-1 .p2 { width: 110px; height: 110px; top: -65px; left: 65px; }
+  .cloud-1 .p3 { width: 80px; height: 80px; top: -48px; left: 130px; }
+
+  /* Cloud 2 - smaller */
+  .cloud-2 { top: 40px; left: 520px; }
+  .cloud-2 .cloud-base { width: 150px; height: 42px; left: 0; }
+  .cloud-2 .p1 { width: 70px; height: 70px; top: -38px; left: 10px; }
+  .cloud-2 .p2 { width: 85px; height: 85px; top: -50px; left: 50px; }
+  .cloud-2 .p3 { width: 60px; height: 60px; top: -36px; left: 100px; }
+
+  /* Cloud 3 - dark rain cloud */
+  .cloud-3 { top: 100px; left: 640px; }
+  .cloud-3 .cloud-base { width: 180px; height: 50px; left: 0; background: linear-gradient(180deg, #6a8fa8 0%, #4a6f88 100%); }
+  .cloud-3 .p1 { width: 80px; height: 80px; top: -45px; left: 10px; background: linear-gradient(180deg, #7a9fb8 0%, #5a7f98 100%); }
+  .cloud-3 .p2 { width: 100px; height: 100px; top: -58px; left: 50px; background: linear-gradient(180deg, #8aafc8 0%, #6a8fa8 100%); }
+  .cloud-3 .p3 { width: 75px; height: 75px; top: -43px; left: 118px; background: linear-gradient(180deg, #7a9fb8 0%, #5a7f98 100%); }
+
+  /* Mountains */
+  .mountain {
+    position: absolute;
+    bottom: 180px;
+    left: 0;
+    z-index: 3;
+  }
+  .mt1 {
+    width: 0; height: 0;
+    border-left: 180px solid transparent;
+    border-right: 180px solid transparent;
+    border-bottom: 280px solid #2a3f5a;
+    position: absolute;
+    bottom: 0; left: -40px;
+  }
+  .mt2 {
+    width: 0; height: 0;
+    border-left: 140px solid transparent;
+    border-right: 140px solid transparent;
+    border-bottom: 220px solid #344d6a;
+    position: absolute;
+    bottom: 0; left: 90px;
+  }
+  .mt-snow {
+    width: 0; height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 80px solid rgba(220,240,255,0.9);
+    position: absolute;
+    bottom: 200px; left: 110px;
+  }
+  .mt-snow2 {
+    width: 0; height: 0;
+    border-left: 38px solid transparent;
+    border-right: 38px solid transparent;
+    border-bottom: 60px solid rgba(220,240,255,0.7);
+    position: absolute;
+    bottom: 162px; left: 192px;
+  }
+
+  /* Ground / land */
+  .ground {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 220px;
+    background: linear-gradient(180deg, #2a5c14 0%, #1e4a0e 40%, #16380a 100%);
+    border-radius: 60% 30% 0 0 / 30px 20px 0 0;
+    z-index: 4;
+  }
+  .ground::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 15px;
+    background: linear-gradient(90deg, #3a7c1e, #4a9228, #3a7c1e, #56a832, #3a7c1e);
+    border-radius: 50%;
+  }
+
+  /* Underground layer */
+  .underground {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 90px;
+    background: linear-gradient(180deg, #5c3a00 0%, #3d2600 100%);
+    z-index: 3;
+  }
+  .underground::before {
+    content: '';
+    position: absolute;
+    top: 10px; left: 40px; right: 40px;
+    height: 30px;
+    background: rgba(30,80,160,0.4);
+    border-radius: 50%;
+    border: 1px dashed rgba(100,180,255,0.3);
+  }
+
+  /* Ocean */
+  .ocean {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 380px;
+    height: 240px;
+    background: linear-gradient(180deg, #1a6090 0%, #0a3a5a 50%, #062030 100%);
+    border-radius: 40% 0 0 0;
+    z-index: 4;
+    overflow: hidden;
+  }
+  .ocean::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, rgba(100,200,255,0.6), transparent);
+    border-radius: 50%;
+  }
+  .wave {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid rgba(100,200,255,0.25);
+  }
+
+  /* Trees */
+  .tree { position: absolute; z-index: 5; }
+  .tree-trunk {
+    width: 12px;
+    background: linear-gradient(90deg, #5c3a00, #7a4e10, #5c3a00);
+    border-radius: 2px;
+    margin: 0 auto;
+  }
+  .tree-top {
+    width: 0; height: 0;
+    border-left: solid transparent;
+    border-right: solid transparent;
+    border-bottom: solid #2d7a1a;
+    margin: 0 auto;
+    filter: drop-shadow(0 -2px 4px rgba(0,0,0,0.2));
+  }
+  .tree-top2 {
+    width: 0; height: 0;
+    border-left: solid transparent;
+    border-right: solid transparent;
+    border-bottom: solid #3a9422;
+    margin: 0 auto;
+  }
+
+  /* River */
+  .river {
+    position: absolute;
+    z-index: 4;
+  }
+
+  /* Rain drops */
+  .raindrops {
+    position: absolute;
+    z-index: 7;
+  }
+  .drop {
+    position: absolute;
+    width: 3px;
+    border-radius: 0 0 3px 3px;
+    background: linear-gradient(180deg, transparent, var(--water-light));
+  }
+
+  /* === ARROWS === */
+  .arrow-svg {
+    position: absolute;
+    z-index: 8;
+    overflow: visible;
+  }
+
+  /* === PROCESS CARDS === */
+  .process-grid {
+    position: relative;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 30px 50px 50px;
+  }
+  .process-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(100,200,255,0.2);
+    border-radius: 16px;
+    padding: 22px 20px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(4px);
+    transition: transform 0.2s;
+  }
+  .process-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 16px 16px 0 0;
+  }
+  .card-blue::before { background: linear-gradient(90deg, #1e90ff, #00d4ff); }
+  .card-teal::before { background: linear-gradient(90deg, #00c4cc, #00e5ff); }
+  .card-steel::before { background: linear-gradient(90deg, #4a8fa8, #6aafc8); }
+  .card-green::before { background: linear-gradient(90deg, #2a9a3a, #4aCA5a); }
+  .card-brown::before { background: linear-gradient(90deg, #7a5a20, #a07a30); }
+  .card-mint::before { background: linear-gradient(90deg, #00b4a0, #00d4c0); }
+
+  .card-icon {
+    font-size: 32px;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .card-num {
+    position: absolute;
+    top: 18px; right: 18px;
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.06);
+    line-height: 1;
+  }
+  .card-title {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .card-body {
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.78);
+    font-weight: 300;
+  }
+
+  /* === FOOTER === */
+  .footer {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 0 60px 40px;
+    color: rgba(255,255,255,0.3);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .footer-line {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(100,200,255,0.3), transparent);
+    margin-bottom: 18px;
+  }
+
+  /* === LABELS IN SCENE === */
+  .scene-label {
+    position: absolute;
+    z-index: 9;
+    background: rgba(0,20,50,0.85);
+    border: 1px solid rgba(0,212,255,0.35);
+    border-radius: 8px;
+    padding: 6px 12px;
+    backdrop-filter: blur(4px);
+  }
+  .scene-label .lbl-title {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* Evaporation arrows from ocean */
+  .evap-arrows {
+    position: absolute;
+    z-index: 7;
+  }
+
+  /* Water table label */
+  .water-table {
+    position: absolute;
+    bottom: 52px;
+    left: 120px;
+    z-index: 5;
+    font-size: 10px;
+    color: rgba(100,180,255,0.6);
+    font-style: italic;
+    letter-spacing: 1px;
+  }
+
+  /* Ocean label */
+  .ocean-label {
+    position: absolute;
+    bottom: 80px;
+    right: 80px;
+    z-index: 9;
+    text-align: center;
+    color: rgba(180,220,255,0.7);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<!-- Stars background -->
+<div class="stars" id="stars"></div>
+
+<!-- ============ HEADER ============ -->
+<div class="header">
+  <div class="header-badge">Biogeochemical Cycles · Poster 1 of 3</div>
+  <h1>The <span>Water</span> Cycle</h1>
+  <p class="header-sub">Earth's Continuous Journey of Water Through Land, Sky & Ocean</p>
+  <div class="header-line"></div>
+</div>
+
+<!-- ============ SCENE ============ -->
+<div class="scene">
+
+  <!-- Sun -->
+  <div class="sun">
+    <div class="sun-rays">
+      <svg width="130" height="130" viewBox="0 0 130 130" style="position:absolute;top:-10px;left:-10px;">
+        <g transform="translate(65,65)">
+          <line x1="0" y1="-58" x2="0" y2="-72" stroke="rgba(255,220,0,0.6)" stroke-width="3" stroke-linecap="round"/>
+          <line x1="0" y1="-58" x2="0" y2="-72" stroke="rgba(255,220,0,0.6)" stroke-width="3" stroke-linecap="round" transform="rotate(45)"/>
+          <line x1="0" y1="-58" x2="0" y2="-72" stroke="rgba(255,220,0,0.6)" stroke-width="3" stroke-linecap="round" transform="rotate(90)"/>
+          <line x1="0" y1="-58" x2="0" y2="-72" stroke="rgba(255,220,0,0.6)" stroke-width="3" stroke-linecap="round" transform="rotate(135)"/>
+          <line x1="0" y1="-58" x2="0" y2="-72" stroke="rgba(255,220,0,0.6)" stroke-width="3" stroke-linecap="round" transform="rotate(180)"/>
+          <line x1="0" y1="-58" x2="0" y2="-72" stroke="rgba(255,220,0,0.6)" stroke-width="3" stroke-linecap="round" transform="rotate(225)"/>
+          <line x1="0" y1="-58" x2="0" y2="-72" stroke="rgba(255,220,0,0.6)" stroke-width="3" stroke-linecap="round" transform="rotate(270)"/>
+          <line x1="0" y1="-58" x2="0" y2="-72" stroke="rgba(255,220,0,0.6)" stroke-width="3" stroke-linecap="round" transform="rotate(315)"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <!-- SVG Scene -->
+  <svg width="1200" height="680" style="position:absolute;top:0;left:0;z-index:4;" viewBox="0 0 1200 680">
+    <!-- Sky gradient -->
+    <defs>
+      <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0a1628" stop-opacity="0"/>
+        <stop offset="100%" stop-color="#0a1628" stop-opacity="0"/>
+      </linearGradient>
+      <!-- Ground gradient -->
+      <linearGradient id="groundGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#2a5c14"/>
+        <stop offset="60%" stop-color="#1e4a0e"/>
+        <stop offset="100%" stop-color="#16380a"/>
+      </linearGradient>
+      <!-- Underground gradient -->
+      <linearGradient id="underGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#5c3a00"/>
+        <stop offset="100%" stop-color="#3d2600"/>
+      </linearGradient>
+      <!-- Ocean gradient -->
+      <linearGradient id="oceanGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#1a6090"/>
+        <stop offset="50%" stop-color="#0a3a5a"/>
+        <stop offset="100%" stop-color="#062030"/>
+      </linearGradient>
+      <!-- Arrow marker -->
+      <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L8,3 L0,6 Z" fill="#00d4ff"/>
+      </marker>
+      <marker id="arrowWhite" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L8,3 L0,6 Z" fill="rgba(200,230,255,0.8)"/>
+      </marker>
+      <marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L8,3 L0,6 Z" fill="#4aCA5a"/>
+      </marker>
+      <marker id="arrowBrown" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L8,3 L0,6 Z" fill="#a07a30"/>
+      </marker>
+      <filter id="glow">
+        <feGaussianBlur stdDeviation="3" result="blur"/>
+        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+
+    <!-- Ground -->
+    <ellipse cx="400" cy="580" rx="450" ry="140" fill="url(#groundGrad)"/>
+    <ellipse cx="400" cy="580" rx="450" ry="140" fill="#2a5c14" opacity="0.5"/>
+
+    <!-- Underground -->
+    <ellipse cx="400" cy="660" rx="450" ry="100" fill="url(#underGrad)"/>
+    <!-- Groundwater -->
+    <ellipse cx="350" cy="652" rx="250" ry="22" fill="rgba(30,100,200,0.3)" stroke="rgba(100,180,255,0.3)" stroke-width="1" stroke-dasharray="6,4"/>
+    <text x="340" y="657" fill="rgba(120,190,255,0.6)" font-size="9" font-family="DM Sans" letter-spacing="1">groundwater / aquifer</text>
+
+    <!-- Ocean -->
+    <path d="M820,450 Q900,420 980,430 Q1100,440 1200,430 L1200,680 L820,680 Z" fill="url(#oceanGrad)"/>
+    <!-- Ocean waves -->
+    <path d="M820,450 Q870,440 920,448 Q970,456 1020,447 Q1070,438 1120,446 Q1160,452 1200,447" fill="none" stroke="rgba(100,200,255,0.4)" stroke-width="2"/>
+    <path d="M840,465 Q890,456 940,462 Q990,468 1040,460 Q1090,452 1140,459" fill="none" stroke="rgba(100,200,255,0.2)" stroke-width="1.5"/>
+
+    <!-- Mountains -->
+    <polygon points="50,530 230,280 410,530" fill="#253550"/>
+    <polygon points="130,530 280,330 430,530" fill="#2e4060"/>
+    <polygon points="160,530 280,340 400,530" fill="#344a70"/>
+    <!-- Snow caps -->
+    <polygon points="210,290 230,280 250,290 240,310 220,310" fill="rgba(220,240,255,0.85)"/>
+    <polygon points="260,342 280,330 300,342 290,362 270,362" fill="rgba(220,240,255,0.7)"/>
+
+    <!-- River flowing right to ocean -->
+    <path d="M280,540 Q380,535 460,542 Q560,550 640,545 Q720,540 800,530 Q820,528 840,450" fill="none" stroke="#1e90ff" stroke-width="14" stroke-linecap="round" opacity="0.7"/>
+    <path d="M280,540 Q380,535 460,542 Q560,550 640,545 Q720,540 800,530 Q820,528 840,450" fill="none" stroke="rgba(100,200,255,0.5)" stroke-width="6" stroke-linecap="round"/>
+
+    <!-- Trees - group 1 -->
+    <rect x="480" y="500" width="10" height="35" fill="#5c3a00" rx="2"/>
+    <polygon points="485,430 520,500 450,500" fill="#1e6b0e"/>
+    <polygon points="485,455 510,505 460,505" fill="#2a8a1a"/>
+
+    <rect x="540" y="503" width="8" height="28" fill="#5c3a00" rx="2"/>
+    <polygon points="544,445 572,505 516,505" fill="#256414"/>
+    <polygon points="544,468 566,507 522,507" fill="#309020"/>
+
+    <rect x="600" y="505" width="10" height="30" fill="#5c3a00" rx="2"/>
+    <polygon points="605,440 635,505 575,505" fill="#1e6b0e"/>
+    <polygon points="605,462 628,507 582,507" fill="#2a8a1a"/>
+
+    <!-- Trees - group 2 near mountain base -->
+    <rect x="320" y="512" width="8" height="22" fill="#5c3a00" rx="2"/>
+    <polygon points="324,460 348,514 300,514" fill="#1a5a0a"/>
+    <polygon points="324,480 342,515 306,515" fill="#247a14"/>
+
+    <!-- == ARROWS == -->
+    <!-- Evaporation: ocean up to cloud -->
+    <path d="M940,445 Q960,300 760,180" fill="none" stroke="#00d4ff" stroke-width="2.5" stroke-dasharray="8,5" marker-end="url(#arrowBlue)" filter="url(#glow)"/>
+    <path d="M900,445 Q920,310 720,190" fill="none" stroke="#00d4ff" stroke-width="2" stroke-dasharray="6,5" marker-end="url(#arrowBlue)" opacity="0.5"/>
+
+    <!-- Condensation: arrow showing cloud formation -->
+    <path d="M560,140 Q590,175 620,165" fill="none" stroke="rgba(200,230,255,0.8)" stroke-width="2.5" marker-end="url(#arrowWhite)"/>
+
+    <!-- Precipitation: rain from cloud down -->
+    <path d="M690,215 L690,350" fill="none" stroke="rgba(150,210,255,0.9)" stroke-width="2.5" marker-end="url(#arrowWhite)"/>
+
+    <!-- Transpiration: from trees up to cloud -->
+    <path d="M540,460 Q540,380 560,280 Q580,210 650,190" fill="none" stroke="#4aCA5a" stroke-width="2" stroke-dasharray="7,5" marker-end="url(#arrowGreen)"/>
+
+    <!-- Runoff: downhill arrow -->
+    <path d="M380,515 Q450,522 530,530" fill="none" stroke="#1e90ff" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+
+    <!-- Infiltration: downward into ground -->
+    <path d="M430,542 L430,600" fill="none" stroke="#a07a30" stroke-width="2.5" stroke-dasharray="6,4" marker-end="url(#arrowBrown)"/>
+    <path d="M460,545 L460,605" fill="none" stroke="#a07a30" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arrowBrown)" opacity="0.5"/>
+
+    <!-- Rain drops from dark cloud -->
+    <line x1="680" y1="220" x2="672" y2="250" stroke="rgba(150,210,255,0.9)" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="700" y1="225" x2="692" y2="258" stroke="rgba(150,210,255,0.9)" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="720" y1="218" x2="712" y2="252" stroke="rgba(150,210,255,0.9)" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="740" y1="224" x2="732" y2="256" stroke="rgba(150,210,255,0.8)" stroke-width="2" stroke-linecap="round"/>
+    <line x1="760" y1="228" x2="752" y2="260" stroke="rgba(150,210,255,0.7)" stroke-width="2" stroke-linecap="round"/>
+    <line x1="670" y1="260" x2="663" y2="290" stroke="rgba(150,210,255,0.6)" stroke-width="2" stroke-linecap="round"/>
+    <line x1="695" y1="265" x2="688" y2="296" stroke="rgba(150,210,255,0.6)" stroke-width="2" stroke-linecap="round"/>
+    <line x1="718" y1="260" x2="711" y2="292" stroke="rgba(150,210,255,0.5)" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- LABELS IN SCENE -->
+    <!-- Evaporation label -->
+    <rect x="955" y="310" width="155" height="52" rx="8" fill="rgba(0,20,50,0.88)" stroke="rgba(0,212,255,0.35)" stroke-width="1"/>
+    <text x="967" y="330" fill="#00d4ff" font-size="10" font-weight="700" font-family="DM Sans" letter-spacing="1.5">EVAPORATION</text>
+    <text x="967" y="345" fill="rgba(255,255,255,0.7)" font-size="9.5" font-family="DM Sans">Heat drives water from</text>
+    <text x="967" y="357" fill="rgba(255,255,255,0.7)" font-size="9.5" font-family="DM Sans">ocean to atmosphere</text>
+
+    <!-- Condensation label -->
+    <rect x="450" y="120" width="162" height="52" rx="8" fill="rgba(0,20,50,0.88)" stroke="rgba(0,212,255,0.35)" stroke-width="1"/>
+    <text x="462" y="140" fill="#00d4ff" font-size="10" font-weight="700" font-family="DM Sans" letter-spacing="1.5">CONDENSATION</text>
+    <text x="462" y="155" fill="rgba(255,255,255,0.7)" font-size="9.5" font-family="DM Sans">Vapor cools &amp; forms</text>
+    <text x="462" y="167" fill="rgba(255,255,255,0.7)" font-size="9.5" font-family="DM Sans">clouds in the sky</text>
+
+    <!-- Precipitation label -->
+    <rect x="756" y="270" width="162" height="52" rx="8" fill="rgba(0,20,50,0.88)" stroke="rgba(0,212,255,0.35)" stroke-width="1"/>
+    <text x="768" y="290" fill="#00d4ff" font-size="10" font-weight="700" font-family="DM Sans" letter-spacing="1.5">PRECIPITATION</text>
+    <text x="768" y="305" fill="rgba(255,255,255,0.7)" font-size="9.5" font-family="DM Sans">Rain or snow falls</text>
+    <text x="768" y="317" fill="rgba(255,255,255,0.7)" font-size="9.5" font-family="DM Sans">from clouds to land</text>
+
+    <!-- Transpiration label -->
+    <rect x="380" y="390" width="148" height="52" rx="8" fill="rgba(0,20,50,0.88)" stroke="rgba(74,202,90,0.4)" stroke-width="1"/>
+    <text x="392" y="410" fill="#4aCA5a" font-size="10" font-weight="700" font-family="DM Sans" letter-spacing="1.5">TRANSPIRATION</text>
+    <text x="392" y="425" fill="rgba(255,255,255,0.7)" font-size="9.5" font-family="DM Sans">Plants release water</text>
+    <text x="392" y="437" fill="rgba(255,255,255,0.7)" font-size="9.5" font-family="DM Sans">vapor through leaves</text>
+
+    <!-- Runoff label -->
+    <rect x="440" y="490" width="142" height="48" rx="8" fill="rgba(0,20,50,0.88)" stroke="rgba(0,212,255,0.35)" stroke-width="1"/>
+    <text x="452" y="509" fill="#00d4ff" font-size="10" font-weight="700" font-family="DM Sans" letter-spacing="1.5">RUNOFF</text>
+    <text x="452" y="524" fill="rgba(255,255,255,0.7)" font-size="9.5" font-family="DM Sans">Water flows over land</text>
+    <text x="452" y="533" fill="rgba(255,255,255,0.7)" font-size="9.5" font-family="DM Sans">into rivers &amp; streams</text>
+
+    <!-- Infiltration label -->
+    <rect x="280" y="555" width="148" height="52" rx="8" fill="rgba(0,20,50,0.88)" stroke="rgba(160,122,48,0.5)" stroke-width="1"/>
+    <text x="292" y="575" fill="#a07a30" font-size="10" font-weight="700" font-family="DM Sans" letter-spacing="1.5">INFILTRATION</text>
+    <text x="292" y="590" fill="rgba(255,255,255,0.7)" font-size="9.5" font-family="DM Sans">Water seeps into soil</text>
+    <text x="292" y="602" fill="rgba(255,255,255,0.7)" font-size="9.5" font-family="DM Sans">to feed groundwater</text>
+
+    <!-- Ocean label -->
+    <text x="1000" y="510" fill="rgba(180,220,255,0.5)" font-size="13" font-family="DM Sans" font-weight="600" letter-spacing="3" text-anchor="middle">OCEAN</text>
+
+    <!-- Sun label -->
+    <text x="1060" y="80" fill="rgba(255,215,0,0.7)" font-size="11" font-family="DM Sans" font-weight="600" letter-spacing="2">SOLAR ENERGY</text>
+  </svg>
+
+  <!-- Cloud 1 -->
+  <div class="cloud cloud-1" style="top:55px;left:195px;">
+    <div class="cloud-body">
+      <div class="cloud-puff p1" style="width:90px;height:90px;top:-55px;left:10px;"></div>
+      <div class="cloud-puff p2" style="width:115px;height:115px;top:-70px;left:60px;"></div>
+      <div class="cloud-puff p3" style="width:80px;height:80px;top:-50px;left:130px;"></div>
+      <div class="cloud-base" style="width:210px;height:55px;left:0;bottom:0;position:relative;background:linear-gradient(180deg,#d0e8f8 0%,#b0d0e8 100%);border-radius:30px;"></div>
+    </div>
+  </div>
+
+  <!-- Cloud 2 (rain cloud) -->
+  <div class="cloud cloud-2" style="top:90px;left:620px;">
+    <div class="cloud-body">
+      <div class="cloud-puff" style="width:85px;height:85px;top:-48px;left:10px;position:absolute;background:linear-gradient(180deg,#7a9fb8,#5a7f98);border-radius:50%;"></div>
+      <div class="cloud-puff" style="width:105px;height:105px;top:-62px;left:55px;position:absolute;background:linear-gradient(180deg,#8aafc8,#6a8fa8);border-radius:50%;"></div>
+      <div class="cloud-puff" style="width:78px;height:78px;top:-46px;left:120px;position:absolute;background:linear-gradient(180deg,#7a9fb8,#5a7f98);border-radius:50%;"></div>
+      <div style="width:195px;height:52px;background:linear-gradient(180deg,#6a8fa8,#4a6f88);border-radius:28px;"></div>
+    </div>
+  </div>
+
+</div><!-- /scene -->
+
+<!-- ============ PROCESS CARDS ============ -->
+<div class="process-grid">
+
+  <div class="process-card card-blue">
+    <span class="card-icon">☀️</span>
+    <div class="card-num">01</div>
+    <div class="card-title">Evaporation</div>
+    <div class="card-body">Solar heat energy converts liquid water from oceans, lakes, and rivers into water vapor, which rises into the atmosphere.</div>
+  </div>
+
+  <div class="process-card card-teal">
+    <span class="card-icon">☁️</span>
+    <div class="card-num">02</div>
+    <div class="card-title">Condensation</div>
+    <div class="card-body">Rising water vapor cools at high altitudes and condenses around tiny dust particles, forming clouds and fog.</div>
+  </div>
+
+  <div class="process-card card-steel">
+    <span class="card-icon">🌧️</span>
+    <div class="card-num">03</div>
+    <div class="card-title">Precipitation</div>
+    <div class="card-body">When cloud droplets combine and grow too heavy, they fall back to Earth as rain, snow, sleet, or hail depending on temperature.</div>
+  </div>
+
+  <div class="process-card card-blue">
+    <span class="card-icon">🏞️</span>
+    <div class="card-num">04</div>
+    <div class="card-title">Runoff</div>
+    <div class="card-body">Precipitation that is not absorbed by the soil flows downhill over land into streams, rivers, lakes, and ultimately the ocean.</div>
+  </div>
+
+  <div class="process-card card-brown">
+    <span class="card-icon">🌱</span>
+    <div class="card-num">05</div>
+    <div class="card-title">Infiltration</div>
+    <div class="card-body">Water seeps down through soil and rock layers to recharge underground aquifers, which may later feed springs and wells.</div>
+  </div>
+
+  <div class="process-card card-mint">
+    <span class="card-icon">🌿</span>
+    <div class="card-num">06</div>
+    <div class="card-title">Transpiration</div>
+    <div class="card-body">Plants absorb groundwater through their roots and release it as water vapor through tiny pores (stomata) in their leaves.</div>
+  </div>
+
+</div>
+
+<!-- ============ FOOTER ============ -->
+<div class="footer">
+  <div class="footer-line"></div>
+  Biogeochemical Cycles · The Water Cycle · Educational Infographic Poster
+</div>
+
+<script>
+  // Generate stars
+  const starsEl = document.getElementById('stars');
+  for (let i = 0; i < 80; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random() * 2 + 0.5;
+    s.style.cssText = `width:${size}px;height:${size}px;top:${Math.random()*45}%;left:${Math.random()*100}%;opacity:${Math.random()*0.4+0.1}`;
+    starsEl.appendChild(s);
+  }
+</script>
+</body>
+</html>
